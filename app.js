@@ -1,7 +1,12 @@
-// Укажи здесь имя бота
-const TELEGRAM_BOT_USERNAME = 'app bot'; // 👈 Сюда имя бота (без @)
-const TELEGRAM_WEB_APP_URL = `tg://resolve?domain=${TELEGRAM_BOT_USERNAME}&start=webapp`;
+<script async src="https://telegram.org/js/telegram-widget.js?22"
+        data-telegram-login="appbot" 
+        data-size="large" 
+        data-onauth="onTelegramAuth(user)" 
+        data-request-access="write">
+</script>
 
-function openTelegramBot() {
-    window.location.href = TELEGRAM_WEB_APP_URL;
-}
+<script type="text/javascript">
+  function onTelegramAuth(user) {
+    alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+  }
+</script>
