@@ -1,16 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Telegram Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-        <div>hello</div>
-    
+    <div class="app-container">
+        <h1>Привет, <span id="username">Пользователь</span>!</h1>
+        <p>Это приложение в Telegram Web App 🚀</p>
+        <button onclick="sendMessage()">Отправить сообщение в Telegram</button>
+    </div>
 
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
