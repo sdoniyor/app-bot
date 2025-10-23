@@ -4,7 +4,7 @@ const ITEMS_URL = `${BASE}/items.json`;
 const GIST_RAW_URL = "https://gist.githubusercontent.com/sdoniyor/f9c3d6495721f1236e7782561a6d0a12/raw/hiddenItems.json";
 const GIST_API_URL = "https://api.github.com/gists/f9c3d6495721f1236e7782561a6d0a12";
 const GIST_FILE_NAME = "hiddenItems.json";
-const GIST_TOKEN = "ВАШ_PERSONAL_ACCESS_TOKEN"; // ⚠️ НЕ ДЕЛАЙ ЭТО В ПУБЛИЧНОМ КОДЕ
+// const GIST_TOKEN = "ВАШ_PERSONAL_ACCESS_TOKEN"; // ⚠️ НЕ ДЕЛАЙ ЭТО В ПУБЛИЧНОМ КОДЕ
 
 if (window.Telegram?.WebApp) {
   Telegram.WebApp.ready();
@@ -151,5 +151,6 @@ document.getElementById("search").oninput = render;
 
 // ===== Старт =====
 loadData();
+
 
 
