@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Web App</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Декантиини — студенческий буфет</title>
+  <link rel="stylesheet" href="style.css" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Выбери тему для Квиза</h1>
-        <div class="themes">
-            <button class="theme">Математика</button>
-            <button class="theme">История</button>
-            <button class="theme">Наука</button>
-            <button class="theme">Спорт</button>
-            <button class="theme">География</button>
-        </div>
-    </div>
+  <header>
+    <h1>ДЕКАНТИИНИ</h1>
+    <p>студенческий буфет</p>
+  </header>
 
-   <script src="./script.js" defer></script>
+  <main id="menu"></main>
+
+  <footer>
+    <div class="nav-item active">🍽<br><span>Меню</span></div>
+    <div class="nav-item">💸<br><span>Акции</span></div>
+    <div class="nav-item">ℹ️<br><span>О нас</span></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
+
