@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Меню доставки</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <title>Буфет</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div id="profile" class="profile">
-      <img id="userAvatar" class="avatar" src="" alt="avatar" />
-    </div>
-    <h1 class="title">🍔 Меню доставки</h1>
-  </header>
+    <h1>Меню буфета</h1>
 
-  <div class="search-bar">
-    <input id="search" type="text" placeholder="Поиск..." />
-  </div>
+    <input type="text" id="search" placeholder="Поиск блюда...">
 
-  <div id="grid" class="grid"></div>
+    <div id="menu"></div>
 
-  <script src="script.js"></script>
+    <hr>
+
+    <h2>Админка</h2>
+    <input type="text" id="adminPassword" placeholder="Пароль">
+    <button id="adminLogin">Войти как админ</button>
+    <div id="adminPanel" style="display:none;"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
-
