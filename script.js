@@ -1,33 +1,46 @@
+// Telegram WebApp API
 if (window.Telegram?.WebApp) {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
 }
 
-let currentUserId = null;
-let isAdmin = false;
 let items = [];
 let hiddenItems = JSON.parse(localStorage.getItem("hiddenItems") || "[]");
+let currentUserId = null;
+let isAdmin = false;
 
-// Загружаем список админов и товаров
-Promise.all([
-  fetch("./admins.json").then(r => r.json()),
-  fetch("./items.json").then(r => r.json())
-]).then(([adminsData, itemsData]) => {
-  items = itemsData;
+// ПОЛНЫЕ URL-адреса для GitHub Pages
+const BASE = "https://username.github.io/telegram-menu"; // ← замени!
+const ADMINS_URL = `${BASE}/admins.json`;
+const ITEMS_URL = `${BASE}/items.json`;
 
-  // Получаем ID пользователя из Telegram
-  const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-  if (tgUser) {
+async function loadData() {
+  try {
+    const [adminsData, itemsData] = await Promise.all([
+      fetch(ADMINS_URL).then(r => r.json()),
+      fetch(ITEMS_URL).then(r => r.json())
+    ]);
+
+    items = itemsData;
+
+    // Получаем данные пользователя Telegram
+    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user || { id: 0 };
     currentUserId = tgUser.id;
-  }
+    console.log("Telegram user:", tgUser);
 
-  // Проверяем, админ ли он
-  if (adminsData.admins.includes(currentUserId)) {
-    isAdmin = true;
-  }
+    // Проверяем админа
+    isAdmin = adminsData.admins.includes(currentUserId);
+    console.log("Is admin:", isAdmin);
 
-  render();
-});
+    render();
+  } catch (e) {
+    console.error("Ошибка загрузки данных:", e);
+    document.getElementById("grid").innerHTML = `
+      <div style="padding:20px; text-align:center;">
+        ⚠️ Не удалось загрузить данные.<br>Проверь JSON и ссылки.
+      </div>`;
+  }
+}
 
 function render() {
   const grid = document.getElementById("grid");
@@ -39,7 +52,6 @@ function render() {
     .forEach(item => {
       const hidden = hiddenItems.includes(item.id);
       const visibleForUser = isAdmin || !hidden;
-
       if (!visibleForUser) return;
 
       const card = document.createElement("div");
@@ -77,3 +89,5 @@ function render() {
 
 document.getElementById("search").oninput = render;
 
+// Запуск
+loadData();
