@@ -8,7 +8,7 @@ if (window.Telegram?.WebApp) {
 }
 
 let items = [];
-let hiddenItems = JSON.parse(localStorage.getItem("hiddenItems") || "[]");
+let hiddenItems = JSON.parse(localStorage.getItem("hiddenItems") || "[]").map(Number);
 let currentUserId = 0;
 let currentUsername = "Гость";
 let currentFirstName = "";
