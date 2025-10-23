@@ -4,27 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Меню доставки</title>
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=10" />
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <div class="app" id="app">
-    <header>
-      <div class="profile" id="profile">
-        <img id="userAvatar" src="https://i.imgur.com/1X5A3zM.png" alt="avatar">
-      </div>
-      <h1>🍔 Меню доставки</h1>
-    </header>
-
-    <div class="search">
-      <input id="search" placeholder="Поиск..." />
+  <header class="header">
+    <div id="profile" class="profile">
+      <img id="userAvatar" class="avatar" src="" alt="avatar" />
     </div>
+    <h1 class="title">🍔 Меню доставки</h1>
+  </header>
 
-    <div class="grid" id="grid"></div>
+  <div class="search-bar">
+    <input id="search" type="text" placeholder="Поиск..." />
   </div>
 
-  <script src="script.js?v=11"></script>
+  <div id="grid" class="grid"></div>
 
+  <script src="script.js?v=10"></script>
 </body>
 </html>
-
