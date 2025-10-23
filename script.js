@@ -14,6 +14,7 @@ let currentUsername = "Гость";
 let currentFirstName = "";
 let isAdmin = false;
 
+// Загрузка данных
 async function loadData() {
   try {
     const [adminsResp, itemsResp] = await Promise.all([
@@ -44,16 +45,15 @@ async function loadData() {
   }
 }
 
+// Рендер профиля пользователя
 function renderProfile(tgUser) {
   const profileDiv = document.getElementById("profile");
   const avatar = document.getElementById("userAvatar");
 
-  // Если Telegram прислал фото — показываем
   if (tgUser.photo_url) {
     avatar.src = tgUser.photo_url;
     avatar.style.display = "block";
   } else {
-    // Если нет фото, показываем первую букву имени
     avatar.style.display = "none";
     const initial = document.createElement("div");
     initial.className = "avatar-initial";
@@ -67,15 +67,16 @@ function renderProfile(tgUser) {
   };
 }
 
+// Рендер товаров
 function render() {
   const grid = document.getElementById("grid");
   const q = document.getElementById("search").value.toLowerCase();
   grid.innerHTML = "";
 
   items
-    .filter(i => i.name.toLowerCase().includes(q))
+    .filter(item => item.name.toLowerCase().includes(q))
     .forEach(item => {
-      const hidden = hiddenItems.includes(item.id);
+      const hidden = hiddenItems.includes(Number(item.id)); // Приведение к числу
       const visibleForUser = isAdmin || !hidden;
       if (!visibleForUser) return;
 
@@ -112,5 +113,8 @@ function render() {
   }
 }
 
+// Поиск в реальном времени
 document.getElementById("search").oninput = render;
+
+// Загрузка данных при старте
 loadData();
