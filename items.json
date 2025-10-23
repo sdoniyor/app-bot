@@ -1,1 +1,6 @@
+[
+  { "id": 1, "name": "Pizza", "price": 699, "img": "https://i.imgur.com/7kQEsHU.png", "available": true },
+  { "id": 2, "name": "Burger", "price": 349, "img": "https://i.imgur.com/8Km9tLL.png", "available": true },
+  { "id": 3, "name": "Hot Dog", "price": 199, "img": "https://i.imgur.com/4Y8z7rS.png", "available": false }
+]
 
