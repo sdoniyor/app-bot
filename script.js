@@ -10,8 +10,8 @@ let hiddenItems = JSON.parse(localStorage.getItem("hiddenItems") || "[]");
 
 // Загружаем список админов и товаров
 Promise.all([
-  fetch("admins.json").then(r => r.json()),
-  fetch("items.json").then(r => r.json())
+  fetch("./admins.json").then(r => r.json()),
+  fetch("./items.json").then(r => r.json())
 ]).then(([adminsData, itemsData]) => {
   items = itemsData;
 
@@ -76,3 +76,4 @@ function render() {
 }
 
 document.getElementById("search").oninput = render;
+
