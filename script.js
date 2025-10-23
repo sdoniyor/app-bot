@@ -10,7 +10,7 @@ let currentUserId = null;
 let isAdmin = false;
 
 // ПОЛНЫЕ URL-адреса для GitHub Pages
-const BASE = "https://username.github.io/telegram-menu"; // ← замени!
+const BASE = "https://sdoniyor.github.io/app-bot";
 const ADMINS_URL = `${BASE}/admins.json`;
 const ITEMS_URL = `${BASE}/items.json`;
 
@@ -91,3 +91,4 @@ document.getElementById("search").oninput = render;
 
 // Запуск
 loadData();
+
