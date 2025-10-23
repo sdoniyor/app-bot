@@ -1,6 +1,7 @@
 [
-  { "id": 1, "name": "Pizza", "price": 699, "img": "https://i.imgur.com/7kQEsHU.png", "available": true },
-  { "id": 2, "name": "Burger", "price": 349, "img": "https://i.imgur.com/8Km9tLL.png", "available": true },
-  { "id": 3, "name": "Hot Dog", "price": 199, "img": "https://i.imgur.com/4Y8z7rS.png", "available": false }
+  { "id": 1, "name": "Пицца Маргарита", "price": 699, "img": "https://i.imgur.com/7kQEsHU.png" },
+  { "id": 2, "name": "Бургер Классик", "price": 349, "img": "https://i.imgur.com/8Km9tLL.png" },
+  { "id": 3, "name": "Хот-Дог", "price": 199, "img": "https://i.imgur.com/4Y8z7rS.png" },
+  { "id": 4, "name": "Картошка Фри", "price": 149, "img": "https://i.imgur.com/6bK5vKX.png" },
+  { "id": 5, "name": "Кола 0.5л", "price": 99, "img": "https://i.imgur.com/z7b1v9m.png" }
 ]
-
