@@ -45,7 +45,7 @@ async function loadData() {
   }
 }
 
-// Рендер профиля пользователя
+// Рендер профиля
 function renderProfile(tgUser) {
   const profileDiv = document.getElementById("profile");
   const avatar = document.getElementById("userAvatar");
@@ -76,7 +76,8 @@ function render() {
   items
     .filter(item => item.name.toLowerCase().includes(q))
     .forEach(item => {
-      const hidden = hiddenItems.includes(Number(item.id)); // Приведение к числу
+      const id = Number(item.id);
+      const hidden = hiddenItems.includes(id);
       const visibleForUser = isAdmin || !hidden;
       if (!visibleForUser) return;
 
@@ -88,7 +89,7 @@ function render() {
         <div class="price">₽${item.price}</div>
         ${
           isAdmin
-            ? `<button class="hide-btn" data-id="${item.id}">
+            ? `<button class="hide-btn" data-id="${id}">
                 ${hidden ? "Вернуть" : "Убрать"}
               </button>`
             : ""
@@ -97,6 +98,7 @@ function render() {
       grid.appendChild(card);
     });
 
+  // Кнопки "Убрать"/"Вернуть" для админа
   if (isAdmin) {
     document.querySelectorAll(".hide-btn").forEach(btn => {
       btn.onclick = () => {
@@ -113,8 +115,8 @@ function render() {
   }
 }
 
-// Поиск в реальном времени
+// Поиск
 document.getElementById("search").oninput = render;
 
-// Загрузка данных при старте
+// Старт
 loadData();
