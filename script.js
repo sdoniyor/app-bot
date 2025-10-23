@@ -1,6 +1,10 @@
 const BASE = "https://sdoniyor.github.io/app-bot";
 const ADMINS_URL = `${BASE}/admins.json`;
 const ITEMS_URL = `${BASE}/items.json`;
+const GIST_RAW_URL = "https://gist.githubusercontent.com/sdoniyor/f9c3d6495721f1236e7782561a6d0a12/raw/hiddenItems.json";
+const GIST_API_URL = "https://api.github.com/gists/f9c3d6495721f1236e7782561a6d0a12";
+const GIST_FILE_NAME = "hiddenItems.json";
+const GIST_TOKEN = "ВАШ_PERSONAL_ACCESS_TOKEN"; // ⚠️ НЕ ДЕЛАЙ ЭТО В ПУБЛИЧНОМ КОДЕ
 
 if (window.Telegram?.WebApp) {
   Telegram.WebApp.ready();
@@ -8,13 +12,37 @@ if (window.Telegram?.WebApp) {
 }
 
 let items = [];
-let hiddenItems = JSON.parse(localStorage.getItem("hiddenItems") || "[]").map(Number);
+let hiddenItems = [];
 let currentUserId = 0;
 let currentUsername = "Гость";
 let currentFirstName = "";
 let isAdmin = false;
 
-// Загрузка данных
+// ===== Загрузка скрытых товаров из Gist =====
+async function loadHiddenItems() {
+  const resp = await fetch(GIST_RAW_URL);
+  const data = await resp.json();
+  hiddenItems = data.hiddenItems.map(Number);
+}
+
+// ===== Обновление Gist =====
+async function updateHiddenItems() {
+  const body = { files: {} };
+  body.files[GIST_FILE_NAME] = { content: JSON.stringify({ hiddenItems }, null, 2) };
+
+  const resp = await fetch(GIST_API_URL, {
+    method: "PATCH",
+    headers: {
+      "Authorization": `token ${GIST_TOKEN}`,
+      "Accept": "application/vnd.github.v3+json"
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) console.error("Не удалось обновить Gist");
+}
+
+// ===== Загрузка данных =====
 async function loadData() {
   try {
     const [adminsResp, itemsResp] = await Promise.all([
@@ -37,6 +65,8 @@ async function loadData() {
     isAdmin = adminsData.admins.includes(currentUserId);
 
     renderProfile(tgUser);
+
+    await loadHiddenItems();
     render();
   } catch (e) {
     console.error("Ошибка:", e);
@@ -45,7 +75,7 @@ async function loadData() {
   }
 }
 
-// Рендер профиля
+// ===== Рендер профиля =====
 function renderProfile(tgUser) {
   const profileDiv = document.getElementById("profile");
   const avatar = document.getElementById("userAvatar");
@@ -67,7 +97,7 @@ function renderProfile(tgUser) {
   };
 }
 
-// Рендер товаров
+// ===== Рендер товаров =====
 function render() {
   const grid = document.getElementById("grid");
   const q = document.getElementById("search").value.toLowerCase();
@@ -98,25 +128,24 @@ function render() {
       grid.appendChild(card);
     });
 
-  // Кнопки "Убрать"/"Вернуть" для админа
   if (isAdmin) {
     document.querySelectorAll(".hide-btn").forEach(btn => {
-      btn.onclick = () => {
+      btn.onclick = async () => {
         const id = Number(btn.dataset.id);
         if (hiddenItems.includes(id)) {
           hiddenItems = hiddenItems.filter(x => x !== id);
         } else {
           hiddenItems.push(id);
         }
-        localStorage.setItem("hiddenItems", JSON.stringify(hiddenItems));
+        await updateHiddenItems();
         render();
       };
     });
   }
 }
 
-// Поиск
+// ===== Поиск =====
 document.getElementById("search").oninput = render;
 
-// Старт
+// ===== Старт =====
 loadData();
