@@ -5,12 +5,14 @@ tg.expand();
 tg.MainButton.hide();
 
 async function loadProducts() {
+  console.log('Загрузка товаров...');
   try {
-    const res = await fetch('products.json');
+    const res = await fetch('products.json?v=1');
     const products = await res.json();
+    console.log('✅ Загружено:', products);
     renderProducts(products);
   } catch (e) {
-    console.error('Ошибка загрузки JSON:', e);
+    console.error('❌ Ошибка при загрузке:', e);
   }
 }
 
@@ -52,3 +54,4 @@ document.getElementById('search').addEventListener('input', async (e) => {
 });
 
 loadProducts();
+
