@@ -83,7 +83,7 @@ body {
   margin-bottom: 20px;
 }
 
-.category {
+.cat {
   padding: 8px 14px;
   border: none;
   background: var(--white);
@@ -95,7 +95,7 @@ body {
   color: var(--muted);
 }
 
-.category.active {
+.cat.active {
   background: var(--accent);
   color: #3b82f6;
   font-weight: 600;
