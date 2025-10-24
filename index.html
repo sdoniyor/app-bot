@@ -1,38 +1,53 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Food Menu - Telegram style</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Menu</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="device">
-    <header class="topbar">
-      <button class="menu-btn" aria-label="menu">☰</button>
-      <div class="title">Menu</div>
-      <div class="avatar">A</div>
+  <div class="app">
+    <header class="top-bar">
+      <button class="menu-btn">☰</button>
+      <h1>Menu</h1>
+      <div class="avatar"></div>
     </header>
 
-    <main class="content">
-      <div class="search-row">
-        <input id="search" placeholder="Search" />
-        <button class="filter-btn" aria-hidden="true">⚲</button>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+      <button class="filter-btn">🔍</button>
+    </div>
+
+    <div class="categories">
+      <button class="category active">All</button>
+      <button class="category">Fast Foods</button>
+      <button class="category">Beverages</button>
+      <button class="category">Cuisines</button>
+    </div>
+
+    <div class="products">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1404/1404945.png" alt="Pizza">
+        <h3>Pizza</h3>
+        <p>₹699</p>
       </div>
-
-      <div class="categories" id="cats">
-        <button class="cat active" data-cat="all">🍽<span>All</span></button>
-        <button class="cat" data-cat="fast">🍔<span>Fast Foods</span></button>
-        <button class="cat" data-cat="bev">🥤<span>Beverages</span></button>
-        <button class="cat" data-cat="cuis">🥣<span>Cuisines</span></button>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Burger">
+        <h3>Burger</h3>
+        <p>₹349</p>
       </div>
-
-      <h2 class="section-title">What today?</h2>
-
-      <div id="grid" class="grid"></div>
-    </main>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Sandwich">
+        <h3>Sandwich</h3>
+        <p>₹299</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1404/1404947.png" alt="Hot Dog">
+        <h3>Hot Dog</h3>
+        <p>₹299</p>
+      </div>
+    </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
