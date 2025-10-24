@@ -110,33 +110,41 @@
 
 
 
-
 const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const catsWrap = document.getElementById('cats');
 const themeBtn = document.getElementById('theme-btn');
 const body = document.body;
+
 let PRODUCTS = [];
 let ADMIN_IDS = [];
 let isAdmin = false;
+let currentUserId = null;
 
-// === Текущий пользователь (пример) ===
-const CURRENT_USER_ID = '987654321'; // сюда вставляем реальный ID текущего пользователя
+// === Получаем ID текущего пользователя из Telegram WebApp ===
+if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+  currentUserId = window.Telegram.WebApp.initDataUnsafe.user.id.toString();
+  console.log('Текущий пользователь ID:', currentUserId);
+} else {
+  console.log('Не в Telegram WebApp, текущий пользователь считается обычным.');
+}
 
-// === Загрузка списка админов ===
+// === Загружаем список админов ===
 async function loadAdmins() {
   try {
     const res = await fetch('admins.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки admins.json');
     ADMIN_IDS = await res.json();
-    isAdmin = ADMIN_IDS.includes(CURRENT_USER_ID);
+    if(currentUserId) {
+      isAdmin = ADMIN_IDS.includes(currentUserId);
+    }
     console.log('isAdmin =', isAdmin);
   } catch (err) {
     console.error('Ошибка загрузки админов:', err);
   }
 }
 
-// === Загрузка продуктов ===
+// === Загружаем продукты ===
 async function loadProducts() {
   try {
     const saved = localStorage.getItem('products');
@@ -238,5 +246,3 @@ async function init() {
 }
 
 init();
-
-
