@@ -1,4 +1,4 @@
-/* Светлая тема по умолчанию */
+/* === Базовые переменные темы === */
 body {
   --bg: #f7f7f7;
   --text: #1f1f1f;
@@ -12,10 +12,14 @@ body {
 
   background: var(--bg);
   color: var(--text);
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
-/* Тёмная тема */
+/* === Тёмная тема === */
 body.dark {
   --bg: #1f1f1f;
   --text: #f7f7f7;
@@ -28,20 +32,33 @@ body.dark {
   --cat-active-color: #1f1f1f;
 }
 
-/* header */
+/* === Контейнер приложения === */
+.app {
+  width: 100%;
+  max-width: 430px;
+  background: var(--header-bg);
+  padding: 16px;
+  border-radius: 10px;
+  margin: 20px auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* === Header и кнопка темы === */
 header {
   text-align: center;
   margin-bottom: 16px;
-  background: var(--header-bg);
-  padding: 8px 0;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
-/* Кнопка темы */
+header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
 #theme-btn {
   border: none;
   background: none;
@@ -54,22 +71,54 @@ header {
   transform: scale(1.2);
 }
 
-/* Инпут поиска */
+/* === Поисковая строка === */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
 .search-bar input {
-  background: var(--input-bg);
+  flex: 1;
+  max-width: 400px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
   border: 1px solid var(--input-border);
+  font-size: 16px;
+  box-sizing: border-box;
+  background: var(--input-bg);
   color: var(--text);
+  transition: all 0.2s ease;
 }
 
-/* Карточки */
-.card {
-  background: var(--card-bg);
-  color: var(--text);
+.search-bar input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+  outline: none;
 }
 
-/* Категории */
+/* === Категории === */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
 .categories .cat {
+  flex: 1 1 30%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
   background: var(--cat-bg);
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.2s;
+  min-width: 90px;
   color: var(--text);
 }
 
@@ -78,106 +127,21 @@ header {
   color: var(--cat-active-color);
 }
 
-.app {
-  width: 100%;
-  max-width: 430px; /* для ПК контейнер не растягивается */
-  background: white;
-  padding: 16px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  box-sizing: border-box;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.search-bar {
-  display: flex;
-  justify-content: center; /* центрируем инпут */
-  width: 100%;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-}
-
-/* Адаптивный инпут */
-.search-bar input {
-  flex: 1;               /* занимает доступное место */
-  max-width: 400px;       /* ограничение ширины на ПК */
-  width: 100%;            /* на маленьких экранах растягивается на всю ширину */
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  box-sizing: border-box;
-  transition: all 0.2s ease;
-}
-
-/* Фокус */
-.search-bar input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-
-/* Планшеты */
-@media (min-width: 600px) {
-  .search-bar input {
-    max-width: 450px;
-    font-size: 17px;
-  }
-}
-
-/* ПК */
-@media (min-width: 900px) {
-  .search-bar input {
-    max-width: 500px;
-    font-size: 18px;
-  }
-}
-
-/* Категории */
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.categories .cat {
-  flex: 1 1 30%; /* растягиваются, но не меньше 30% */
-  padding: 8px;
-  border: none;
-  border-radius: 6px;
-  background: #eee;
-  cursor: pointer;
-  text-align: center;
-  font-size: 14px;
-  transition: all 0.2s;
-}
-
-.categories .cat.active {
-  background: #007bff;
-  color: white;
-}
-
-/* Сетка карточек */
+/* === Сетка продуктов === */
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
 }
 
-/* Карточка продукта */
+/* === Карточки продуктов === */
 .card {
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 10px;
   padding: 10px;
   text-align: center;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
- 
+  display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.2s;
@@ -202,32 +166,54 @@ header {
 .card p {
   margin: 0;
   font-weight: bold;
-  color: #555;
+  color: var(--text);
   font-size: 13px;
 }
 
-/* Адаптация под планшеты */
+.card .rating {
+  font-size: 12px;
+  color: #ffb400;
+  margin-top: 2px;
+}
+
+/* === Адаптивность === */
 @media (min-width: 600px) {
+  .app {
+    max-width: 600px;
+  }
+  .search-bar input {
+    max-width: 450px;
+    font-size: 17px;
+  }
   .card img {
     width: 80px;
     height: 80px;
   }
   .card h3 {
-    font-size: 16px;
+    font-size: 15px;
   }
   .card p {
     font-size: 14px;
   }
 }
 
-/* Адаптация под ПК */
 @media (min-width: 900px) {
+  body {
+    background: linear-gradient(135deg, #f2f4f8, #e9ecf3);
+  }
   .app {
-    max-width: 700px;
-    padding: 20px;
+    max-width: 800px;
+    padding: 24px;
+  }
+  header h1 {
+    font-size: 24px;
+  }
+  .search-bar input {
+    max-width: 500px;
+    font-size: 18px;
   }
   .products {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 16px;
   }
   .card img {
@@ -235,13 +221,9 @@ header {
     height: 90px;
   }
   .card h3 {
-    font-size: 18px;
+    font-size: 17px;
   }
   .card p {
     font-size: 15px;
   }
 }
-
-
-
-
