@@ -120,8 +120,16 @@ const body = document.body;
 let PRODUCTS = [];
 
 // === Настройка админа ===
-const ADMIN_IDS = ['1837175511']; // пример ID админа
-const CURRENT_USER_ID = '123456789'; // текущий пользователь
+const ADMIN_IDS = [
+  '123456789', // админ 1
+  '987654321', // админ 2
+  '555555555'  // админ 3
+];
+
+// Текущий пользователь
+const CURRENT_USER_ID = '987654321';
+
+// Проверка, админ ли пользователь
 const isAdmin = ADMIN_IDS.includes(CURRENT_USER_ID);
 console.log('isAdmin =', isAdmin);
 
@@ -222,5 +230,6 @@ themeBtn.addEventListener('click', () => {
 
 // === Инициализация ===
 loadProducts();
+
 
 
