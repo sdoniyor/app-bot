@@ -1,36 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food Menu</title>
+  <title>Меню блюд</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app">
-    <header class="top-bar">
-      <button class="menu-btn">☰</button>
-      <h1>Menu</h1>
-      <div class="avatar"></div>
+    <header>
+      <h1>🍕 Меню</h1>
     </header>
 
     <div class="search-bar">
-      <input type="text" placeholder="Search">
-      <button class="filter-btn">🔍</button>
+      <input id="search" type="text" placeholder="Поиск блюда...">
     </div>
 
-    <div class="categories">
-      <button class="category active">All</button>
-      <button class="category">Fast Foods</button>
-      <button class="category">Beverages</button>
-      <button class="category">Cuisines</button>
+    <div id="cats" class="categories">
+      <button class="cat active" data-cat="all">Все</button>
+      <button class="cat" data-cat="fast">Фастфуд</button>
+      <button class="cat" data-cat="drinks">Напитки</button>
     </div>
 
-    <div class="products" id="grid"></div>
-
-   
+    <div id="grid" class="products"></div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
-
