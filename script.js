@@ -128,6 +128,11 @@ if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
   console.log('Не в Telegram WebApp, текущий пользователь считается обычным.');
 }
 
+
+if (!window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
+  console.log('Не в Telegram WebApp, используем тестовый ID для админа');
+  currentUserId = "1837175511"; // для теста
+}
 // --- Загружаем список админов ---
 async function loadAdmins() {
   try {
@@ -258,6 +263,7 @@ async function init() {
 }
 
 init();
+
 
 
 
