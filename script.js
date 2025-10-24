@@ -121,30 +121,26 @@ let ADMIN_IDS = [];
 let isAdmin = false;
 let currentUserId = null;
 
-// === Получаем ID текущего пользователя из Telegram WebApp ===
-if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+// Получаем ID текущего пользователя из Telegram WebApp
+if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
   currentUserId = window.Telegram.WebApp.initDataUnsafe.user.id.toString();
   console.log('Текущий пользователь ID:', currentUserId);
-} else {
-  console.log('Не в Telegram WebApp, текущий пользователь считается обычным.');
 }
 
-// === Загружаем список админов ===
+// Загружаем список админов
 async function loadAdmins() {
   try {
     const res = await fetch('admins.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки admins.json');
     ADMIN_IDS = await res.json();
-    if(currentUserId) {
-      isAdmin = ADMIN_IDS.includes(currentUserId);
-    }
+    if (currentUserId) isAdmin = ADMIN_IDS.includes(currentUserId);
     console.log('isAdmin =', isAdmin);
   } catch (err) {
     console.error('Ошибка загрузки админов:', err);
   }
 }
 
-// === Загружаем продукты ===
+// Загружаем продукты
 async function loadProducts() {
   try {
     const saved = localStorage.getItem('products');
@@ -162,7 +158,7 @@ async function loadProducts() {
   }
 }
 
-// === Отрисовка продуктов ===
+// Отрисовка продуктов
 function renderProducts(items) {
   grid.innerHTML = '';
   if (!items || items.length === 0) {
@@ -176,7 +172,7 @@ function renderProducts(items) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <img src="${p.image}" alt="${p.name}">
+      <img src="${p.image}" alt="${p.name}" width="100%">
       <h3>${p.name}</h3>
       <p>${p.price} ₽</p>
       <div class="rating">⭐ ${p.rating || '0'}</div>
@@ -198,7 +194,7 @@ function renderProducts(items) {
   });
 }
 
-// === Фильтры ===
+// Фильтры
 function applyFilters() {
   const q = searchInput.value.trim().toLowerCase();
   const active = document.querySelector('.cat.active');
@@ -210,6 +206,7 @@ function applyFilters() {
   renderProducts(filtered);
 }
 
+// Категории
 catsWrap.addEventListener('click', (ev) => {
   const btn = ev.target.closest('.cat');
   if (!btn) return;
@@ -220,7 +217,7 @@ catsWrap.addEventListener('click', (ev) => {
 
 searchInput.addEventListener('input', applyFilters);
 
-// === Тема светлая / тёмная ===
+// Тема
 if(localStorage.getItem('theme') === 'dark') {
   body.classList.add('dark');
   themeBtn.textContent = '☀️';
@@ -239,7 +236,7 @@ themeBtn.addEventListener('click', () => {
   }
 });
 
-// === Инициализация ===
+// Инициализация
 async function init() {
   await loadAdmins();
   await loadProducts();
