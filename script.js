@@ -1,6 +1,8 @@
 const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const catsWrap = document.getElementById('cats');
+const themeBtn = document.getElementById('theme-btn');
+const body = document.body;
 let PRODUCTS = [];
 
 // === Загрузка продуктов из JSON ===
@@ -9,6 +11,7 @@ async function loadProducts() {
     const res = await fetch('products.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки JSON');
     PRODUCTS = await res.json();
+    console.log('Загруженные продукты:', PRODUCTS);
     renderProducts(PRODUCTS);
   } catch (err) {
     console.error('Ошибка загрузки продуктов:', err);
@@ -63,14 +66,7 @@ catsWrap.addEventListener('click', (ev) => {
 
 searchInput.addEventListener('input', applyFilters);
 
-// === Загрузка продуктов при старте ===
-loadProducts();
-
 // === Тема светлая / тёмная ===
-const themeBtn = document.getElementById('theme-btn');
-const body = document.body;
-
-// Проверка сохраненной темы
 if(localStorage.getItem('theme') === 'dark') {
   body.classList.add('dark');
   themeBtn.textContent = '☀️';
@@ -78,7 +74,6 @@ if(localStorage.getItem('theme') === 'dark') {
   themeBtn.textContent = '🌙';
 }
 
-// Переключение темы
 themeBtn.addEventListener('click', () => {
   body.classList.toggle('dark');
   if(body.classList.contains('dark')) {
@@ -89,3 +84,6 @@ themeBtn.addEventListener('click', () => {
     localStorage.setItem('theme', 'light');
   }
 });
+
+// === Инициализация ===
+loadProducts();
