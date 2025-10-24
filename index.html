@@ -2,24 +2,37 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Food Menu</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food Menu - Telegram style</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>🍔 Telegram Food Menu</h1>
+  <div class="device">
+    <header class="topbar">
+      <button class="menu-btn" aria-label="menu">☰</button>
+      <div class="title">Menu</div>
+      <div class="avatar">A</div>
     </header>
 
-    <div class="search">
-      <input type="text" id="search" placeholder="Поиск...">
-    </div>
+    <main class="content">
+      <div class="search-row">
+        <input id="search" placeholder="Search" />
+        <button class="filter-btn" aria-hidden="true">⚲</button>
+      </div>
 
-    <main id="productGrid" class="grid"></main>
+      <div class="categories" id="cats">
+        <button class="cat active" data-cat="all">🍽<span>All</span></button>
+        <button class="cat" data-cat="fast">🍔<span>Fast Foods</span></button>
+        <button class="cat" data-cat="bev">🥤<span>Beverages</span></button>
+        <button class="cat" data-cat="cuis">🥣<span>Cuisines</span></button>
+      </div>
+
+      <h2 class="section-title">What today?</h2>
+
+      <div id="grid" class="grid"></div>
+    </main>
   </div>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
