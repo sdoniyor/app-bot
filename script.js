@@ -1,5 +1,4 @@
 const tg = window.Telegram.WebApp;
-
 tg.expand();
 tg.MainButton.hide();
 
@@ -26,15 +25,9 @@ function renderProducts(products) {
       </div>
       <div class="info">
         <h3>${p.name}</h3>
-        <p class="price">₹${p.price}</p>
+        <p class="price">${p.price} ₽</p>
       </div>
     `;
-
-    // При клике можно, например, подсветить товар (если захочешь в будущем)
-    card.addEventListener('click', () => {
-      tg.sendData(JSON.stringify(p)); // Отправляем выбранный товар в бота
-    });
-
     grid.appendChild(card);
   });
 }
