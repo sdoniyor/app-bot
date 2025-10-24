@@ -52,7 +52,9 @@ header {
 }
 
 .products {
-  display: grid;
+  display: flex;
+   flex-wrap: wrap;
+  align-item: center;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
@@ -81,6 +83,7 @@ header {
   font-weight: bold;
   color: #555;
 }
+
 
 
 
