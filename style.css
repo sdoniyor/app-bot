@@ -1,10 +1,10 @@
 :root {
   --bg: #f7f9fc;
-  --card-bg: #ffffff;
+  --card-bg: #fff;
   --text: #1f2937;
   --muted: #6b7280;
-  --shadow: 0 6px 20px rgba(0,0,0,0.08);
-  --radius: 16px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --radius: 14px;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   padding: 16px;
 }
 
@@ -27,11 +27,7 @@ header {
   margin-bottom: 16px;
 }
 
-.search {
-  margin-bottom: 16px;
-}
-
-.search input {
+#search {
   width: 100%;
   padding: 10px 14px;
   border-radius: var(--radius);
@@ -62,12 +58,12 @@ header {
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .img-wrap {
   width: 100%;
-  height: 120px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,20 +72,18 @@ header {
 }
 
 .img-wrap img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 80px;
   object-fit: contain;
-  max-width: 120px;
-  max-height: 120px;
 }
 
 .info {
-  padding: 10px 12px 14px;
+  padding: 8px 10px 14px;
 }
 
 .info h3 {
   margin: 4px 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text);
 }
