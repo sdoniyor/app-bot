@@ -16,7 +16,7 @@ isAdmin = true; // сразу включаем режим админа для т
 // --- Загрузка продуктов с сервера ---
 async function loadProducts() {
   try {
-    const res = await fetch('/products?nocache=' + Date.now());
+    const res = await fetch('products?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки JSON');
     PRODUCTS = await res.json();
     renderProducts(PRODUCTS);
@@ -280,3 +280,4 @@ loadProducts();
 // }
 
 // init();
+
