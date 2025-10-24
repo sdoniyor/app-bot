@@ -4,35 +4,40 @@
     "price": 699,
     "image": "https://cdn-icons-png.flaticon.com/512/1404/1404945.png",
     "cat": "fast",
-    "rating": "4.6"
+    "rating": "4.6",
+     "deleted": false
   },
   {
     "name": "Burger",
     "price": 349,
     "image": "https://cdn-icons-png.flaticon.com/512/3075/3075977.png",
     "cat": "fast",
-    "rating": "4.3"
+    "rating": "4.3", 
+    "deleted": false
   },
   {
     "name": "Sandwich",
     "price": 299,
     "image": "https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
     "cat": "fast",
-    "rating": "4.1"
+    "rating": "4.1",
+     "deleted": false
   },
   {
     "name": "Hot Dog",
     "price": 299,
     "image": "https://images.icon-icons.com/281/PNG/256/Hot-Dog-icon_30324.png",
     "cat": "fast",
-    "rating": "4.2"
+    "rating": "4.2",
+     "deleted": false
   },
   {
     "name":"Coffe",
     "price":200,
     "image":"https://images.icon-icons.com/1776/PNG/512/coffeecup_114302.png",
     "cat": "drinks",
-    "rating":"4.1"
+    "rating":"4.1",
+     "deleted": false
   }
 ]
 
