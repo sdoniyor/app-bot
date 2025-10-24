@@ -123,7 +123,7 @@ let currentUserId = null;
 // --- Получаем ID текущего пользователя из Telegram WebApp ---
 if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
   currentUserId = window.Telegram.WebApp.initDataUnsafe.user.id.toString();
-  console.log('currentUserId:', currentUserId);
+  console.log('currentUserId (тип: ' + typeof currentUserId + '):', currentUserId);
 } else {
   console.log('Не в Telegram WebApp, текущий пользователь считается обычным.');
 }
@@ -133,7 +133,9 @@ async function loadAdmins() {
   try {
     const res = await fetch('admins.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки admins.json');
-    ADMIN_IDS = await res.json();
+
+    // Преобразуем все ID в строки для корректного сравнения
+    ADMIN_IDS = (await res.json()).map(id => id.toString());
 
     // Проверяем, является ли текущий пользователь админом
     if (currentUserId && ADMIN_IDS.includes(currentUserId)) {
@@ -142,7 +144,8 @@ async function loadAdmins() {
       isAdmin = false;
     }
 
-    console.log('isAdmin:', isAdmin);
+    console.log('ADMIN_IDS:', ADMIN_IDS);
+    console.log('isAdmin после проверки:', isAdmin);
   } catch (err) {
     console.error('Ошибка загрузки админов:', err);
   }
@@ -176,7 +179,7 @@ function renderProducts(items) {
   }
 
   items.forEach((p, index) => {
-    // Скрываем удалённые товары от обычных пользователей
+    // Скрываем удалённые товары для обычных пользователей
     if (p.deleted && !isAdmin) return;
 
     const card = document.createElement('div');
@@ -255,4 +258,6 @@ async function init() {
 }
 
 init();
+
+
 
