@@ -32,6 +32,7 @@ header {
 
 .categories {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -80,5 +81,6 @@ header {
   font-weight: bold;
   color: #555;
 }
+
 
 
