@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Меню блюд</title>
+  <title>Food Menu</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,27 +11,23 @@
     <header>
       <h1>
         🍕 Меню
-        <button id="theme-btn" title="Переключить тему">
-          🌙
-        </button>
+        <button id="theme-btn" title="Переключить тему">🌙</button>
       </h1>
     </header>
 
     <div class="search-bar">
-      <input id="search" type="text" placeholder="Поиск блюда...">
+      <input id="search" type="text" placeholder="Поиск по продуктам...">
     </div>
 
-    <div id="cats" class="categories">
+    <div class="categories" id="cats">
       <button class="cat active" data-cat="all">Все</button>
       <button class="cat" data-cat="fast">Фастфуд</button>
-      <button class="cat" data-cat="drinks">Напитки</button>
+      <button class="cat" data-cat="drink">Напитки</button>
     </div>
 
-    <div id="grid" class="products"></div>
+    <div class="products" id="grid"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
