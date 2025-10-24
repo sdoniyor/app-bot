@@ -123,6 +123,7 @@ let PRODUCTS = [];
 const ADMIN_IDS = ['1837175511']; // пример ID админа
 const CURRENT_USER_ID = '123456789'; // текущий пользователь
 const isAdmin = ADMIN_IDS.includes(CURRENT_USER_ID);
+console.log('isAdmin =', isAdmin);
 
 // === Загрузка продуктов из JSON ===
 async function loadProducts() {
@@ -221,4 +222,5 @@ themeBtn.addEventListener('click', () => {
 
 // === Инициализация ===
 loadProducts();
+
 
