@@ -2,26 +2,29 @@
   {
     "name": "Pizza",
     "price": 699,
-    "image": "https://cdn-icons-png.flaticon.com/512/1404/1404945.png"
+    "image": "https://cdn-icons-png.flaticon.com/512/1404/1404945.png",
+    "cat": "fast",
+    "rating": "4.6"
   },
   {
     "name": "Burger",
     "price": 349,
-    "image": "https://cdn-icons-png.flaticon.com/512/3075/3075977.png"
+    "image": "https://cdn-icons-png.flaticon.com/512/3075/3075977.png",
+    "cat": "fast",
+    "rating": "4.3"
   },
   {
     "name": "Sandwich",
     "price": 299,
-    "image": "https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+    "image": "https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
+    "cat": "fast",
+    "rating": "4.1"
   },
   {
     "name": "Hot Dog",
     "price": 299,
-    "image": "https://cdn-icons-png.flaticon.com/512/1404/1404947.png"
-  },
-  {
-    "name": "Hot Dog",
-    "price": 299,
-    "image": "https://cdn-icons-png.flaticon.com/512/1404/1404947.png"
+    "image": "https://cdn-icons-png.flaticon.com/512/1404/1404947.png",
+    "cat": "fast",
+    "rating": "4.2"
   }
 ]
