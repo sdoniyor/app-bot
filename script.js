@@ -111,29 +111,32 @@
 
 
 
-
 const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const catsWrap = document.getElementById('cats');
 const themeBtn = document.getElementById('theme-btn');
 const body = document.body;
 let PRODUCTS = [];
+let ADMIN_IDS = [];
+let isAdmin = false;
 
-// === Настройка админа ===
-const ADMIN_IDS = [
-  '123456789', // админ 1
-  '987654321', // админ 2
-  '555555555'  // админ 3
-];
+// === Текущий пользователь (пример) ===
+const CURRENT_USER_ID = '987654321'; // сюда вставляем реальный ID текущего пользователя
 
-// Текущий пользователь
-const CURRENT_USER_ID = '987654321';
+// === Загрузка списка админов ===
+async function loadAdmins() {
+  try {
+    const res = await fetch('admins.json?nocache=' + Date.now());
+    if (!res.ok) throw new Error('Ошибка загрузки admins.json');
+    ADMIN_IDS = await res.json();
+    isAdmin = ADMIN_IDS.includes(CURRENT_USER_ID);
+    console.log('isAdmin =', isAdmin);
+  } catch (err) {
+    console.error('Ошибка загрузки админов:', err);
+  }
+}
 
-// Проверка, админ ли пользователь
-const isAdmin = ADMIN_IDS.includes(CURRENT_USER_ID);
-console.log('isAdmin =', isAdmin);
-
-// === Загрузка продуктов из JSON ===
+// === Загрузка продуктов ===
 async function loadProducts() {
   try {
     const saved = localStorage.getItem('products');
@@ -229,7 +232,11 @@ themeBtn.addEventListener('click', () => {
 });
 
 // === Инициализация ===
-loadProducts();
+async function init() {
+  await loadAdmins();
+  await loadProducts();
+}
 
+init();
 
 
