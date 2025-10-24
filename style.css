@@ -1,10 +1,81 @@
-/* Сброс и базовые стили */
+/* Светлая тема по умолчанию */
 body {
-  font-family: sans-serif;
-  margin: 0;
-  background: #f7f7f7;
+  --bg: #f7f7f7;
+  --text: #1f1f1f;
+  --card-bg: #fff;
+  --header-bg: #fff;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --cat-bg: #eee;
+  --cat-active-bg: #007bff;
+  --cat-active-color: #fff;
+
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+/* Тёмная тема */
+body.dark {
+  --bg: #1f1f1f;
+  --text: #f7f7f7;
+  --card-bg: #2c2c2c;
+  --header-bg: #2c2c2c;
+  --input-bg: #3a3a3a;
+  --input-border: #555;
+  --cat-bg: #3a3a3a;
+  --cat-active-bg: #ff9800;
+  --cat-active-color: #1f1f1f;
+}
+
+/* header */
+header {
+  text-align: center;
+  margin-bottom: 16px;
+  background: var(--header-bg);
+  padding: 8px 0;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Кнопка темы */
+#theme-btn {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#theme-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Инпут поиска */
+.search-bar input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text);
+}
+
+/* Карточки */
+.card {
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+/* Категории */
+.categories .cat {
+  background: var(--cat-bg);
+  color: var(--text);
+}
+
+.categories .cat.active {
+  background: var(--cat-active-bg);
+  color: var(--cat-active-color);
 }
 
 .app {
@@ -170,6 +241,7 @@ header {
     font-size: 15px;
   }
 }
+
 
 
 
