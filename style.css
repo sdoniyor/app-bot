@@ -22,7 +22,7 @@ header {
 }
 
 .search-bar input {
-  width: 100%;
+  width: 80%;
   padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -80,3 +80,4 @@ header {
   font-weight: bold;
   color: #555;
 }
+
