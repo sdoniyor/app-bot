@@ -1,61 +1,54 @@
-let dishes = [];
-let isAdmin = false;
-const adminPassword = "1234"; // простой пример
+const tg = window.Telegram.WebApp;
 
-// Загружаем JSON
-fetch('dishes.json')
-    .then(response => response.json())
-    .then(data => {
-        dishes = data;
-        showMenu();
-    });
+// Инициализация Telegram WebApp
+tg.expand();
+tg.MainButton.hide();
 
-// Отображение меню для пользователей
-function showMenu() {
-    const menu = document.getElementById('menu');
-    menu.innerHTML = '';
-    const query = document.getElementById('search').value.toLowerCase();
-    dishes.forEach(dish => {
-        if (dish.enabled && dish.name.toLowerCase().includes(query)) {
-            const div = document.createElement('div');
-            div.textContent = `${dish.name} — ${dish.price}₽`;
-            menu.appendChild(div);
-        }
-    });
+async function loadProducts() {
+  try {
+    const res = await fetch('products.json');
+    const products = await res.json();
+    renderProducts(products);
+  } catch (e) {
+    console.error('Ошибка загрузки JSON:', e);
+  }
 }
 
-// Поиск
-document.getElementById('search').addEventListener('input', showMenu);
+function renderProducts(products) {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
 
-// Вход в админку
-document.getElementById('adminLogin').addEventListener('click', () => {
-    const password = document.getElementById('adminPassword').value;
-    if (password === adminPassword) {
-        isAdmin = true;
-        document.getElementById('adminPanel').style.display = 'block';
-        showAdminPanel();
-    } else {
-        alert("Неверный пароль!");
-    }
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.image}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <div class="price">₹${p.price}</div>
+      <button class="addBtn">Выбрать</button>
+    `;
+
+    // При нажатии — показать кнопку Telegram "Добавить"
+    const btn = card.querySelector('.addBtn');
+    btn.addEventListener('click', () => {
+      tg.MainButton.text = `Добавить: ${p.name}`;
+      tg.MainButton.show();
+      tg.MainButton.onClick(() => {
+        tg.sendData(JSON.stringify(p)); // Отправляем товар в Telegram Bot
+      });
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+// Поиск по товарам
+document.getElementById('search').addEventListener('input', async (e) => {
+  const res = await fetch('products.json');
+  const products = await res.json();
+  const query = e.target.value.toLowerCase();
+  const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+  renderProducts(filtered);
 });
 
-// Админка
-function showAdminPanel() {
-    const panel = document.getElementById('adminPanel');
-    panel.innerHTML = '';
-    dishes.forEach(dish => {
-        const div = document.createElement('div');
-        div.textContent = `${dish.name} — ${dish.price}₽ — ${dish.enabled ? 'Вкл' : 'Выкл'}`;
-
-        const toggleBtn = document.createElement('button');
-        toggleBtn.textContent = dish.enabled ? 'Выключить' : 'Включить';
-        toggleBtn.onclick = () => {
-            dish.enabled = !dish.enabled;
-            showAdminPanel();
-            showMenu();
-        };
-
-        div.appendChild(toggleBtn);
-        panel.appendChild(div);
-    });
-}
+loadProducts();
