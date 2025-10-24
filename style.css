@@ -23,13 +23,30 @@ header {
   margin-bottom: 16px;
 }
 
-.search-bar input {
+/* ======= ПОИСК ======= */
+.search-bar {
+  display: flex;
   width: 100%;
-  padding: 8px 12px;
-  border-radius: 6px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
-  margin-bottom: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* на фокус — эффект */
+.search-bar input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  outline: none;
 }
 
 /* Категории */
@@ -135,4 +152,5 @@ header {
     font-size: 15px;
   }
 }
+
 
