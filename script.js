@@ -9,6 +9,7 @@ async function loadProducts() {
     const res = await fetch('products.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки JSON');
     PRODUCTS = await res.json();
+    console.log('Загруженные продукты:', PRODUCTS);
     renderProducts(PRODUCTS);
   } catch (err) {
     console.error('Ошибка загрузки продуктов:', err);
@@ -62,3 +63,4 @@ catsWrap.addEventListener('click', (ev) => {
 searchInput.addEventListener('input', applyFilters);
 
 loadProducts();
+
