@@ -47,39 +47,35 @@ body.dark {
 /* === Header и кнопка темы === */
 header {
   display: flex;
-  justify-content: space-between; /* h1 слева, кнопка справа */
   align-items: center;
+  justify-content: space-between; /* h1 слева, кнопка справа */
   background: var(--header-bg);
   padding: 8px 12px;
   border-radius: 10px;
   margin-bottom: 16px;
 }
 
+/* h1 растягиваемый, чтобы кнопка ушла вправо */
 header h1 {
   margin: 0;
   font-size: 20px;
   color: var(--text);
+  flex-grow: 1;       /* h1 занимает всё доступное место */
 }
 
+/* Кнопка темы */
 #theme-btn {
   border: none;
   background: none;
   font-size: 20px;
   cursor: pointer;
-  transition: transform 0.2s;
-}
-
-#theme-btn {
-  border: none;
-  background: none;
-  font-size: 20px;
-  cursor: pointer;
-  transition: transform 0.2s;
+  flex-shrink: 0;     /* не сжимается */
 }
 
 #theme-btn:hover {
   transform: scale(1.2);
 }
+
 /* === Поисковая строка === */
 .search-bar {
   display: flex;
@@ -236,4 +232,5 @@ header h1 {
     font-size: 15px;
   }
 }
+
 
