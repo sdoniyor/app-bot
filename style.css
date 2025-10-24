@@ -71,7 +71,7 @@ header {
   padding: 10px;
   text-align: center;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  display: flex;
+ 
   flex-direction: column;
   align-items: center;
   transition: transform 0.2s;
@@ -135,3 +135,4 @@ header {
     font-size: 15px;
   }
 }
+
