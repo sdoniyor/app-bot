@@ -1,24 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Буфет</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Menu</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Меню буфета</h1>
+  <div class="container">
+    <header>
+      <h1>🍔 Telegram Food Menu</h1>
+    </header>
 
-    <input type="text" id="search" placeholder="Поиск блюда...">
+    <div class="search">
+      <input type="text" id="search" placeholder="Поиск...">
+    </div>
 
-    <div id="menu"></div>
+    <main id="productGrid" class="grid"></main>
+  </div>
 
-    <hr>
-
-    <h2>Админка</h2>
-    <input type="text" id="adminPassword" placeholder="Пароль">
-    <button id="adminLogin">Войти как админ</button>
-    <div id="adminPanel" style="display:none;"></div>
-
-    <script src="script.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
