@@ -23,30 +23,48 @@ header {
   margin-bottom: 16px;
 }
 
-/* ======= ПОИСК ======= */
 .search-bar {
   display: flex;
+  justify-content: center; /* центрируем инпут */
   width: 100%;
-  justify-content: center;
   margin-bottom: 12px;
+  box-sizing: border-box;
 }
 
+/* Адаптивный инпут */
 .search-bar input {
-  flex: 1;
+  flex: 1;               /* занимает доступное место */
+  max-width: 400px;       /* ограничение ширины на ПК */
+  width: 100%;            /* на маленьких экранах растягивается на всю ширину */
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
-  max-width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
-/* на фокус — эффект */
+/* Фокус */
 .search-bar input:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
   outline: none;
+}
+
+/* Планшеты */
+@media (min-width: 600px) {
+  .search-bar input {
+    max-width: 450px;
+    font-size: 17px;
+  }
+}
+
+/* ПК */
+@media (min-width: 900px) {
+  .search-bar input {
+    max-width: 500px;
+    font-size: 18px;
+  }
 }
 
 /* Категории */
@@ -152,5 +170,6 @@ header {
     font-size: 15px;
   }
 }
+
 
 
