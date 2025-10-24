@@ -5,13 +5,17 @@ const themeBtn = document.getElementById('theme-btn');
 const body = document.body;
 let PRODUCTS = [];
 
+// === Настройка админа ===
+const ADMIN_IDS = ['1837175511']; // сюда можно вставить ID админа
+const CURRENT_USER_ID = '123456789'; // для примера текущий пользователь
+const isAdmin = ADMIN_IDS.includes(CURRENT_USER_ID);
+
 // === Загрузка продуктов из JSON ===
 async function loadProducts() {
   try {
     const res = await fetch('products.json?nocache=' + Date.now());
     if (!res.ok) throw new Error('Ошибка загрузки JSON');
     PRODUCTS = await res.json();
-    console.log('Загруженные продукты:', PRODUCTS);
     renderProducts(PRODUCTS);
   } catch (err) {
     console.error('Ошибка загрузки продуктов:', err);
@@ -22,12 +26,16 @@ async function loadProducts() {
 // === Отрисовка продуктов ===
 function renderProducts(items) {
   grid.innerHTML = '';
+
   if (!items || items.length === 0) {
     grid.innerHTML = '<p style="text-align:center;color:#666;">Нет товаров</p>';
     return;
   }
 
-  items.forEach(p => {
+  items.forEach((p, index) => {
+    // скрываем удаленные товары для обычного пользователя
+    if (p.deleted && !isAdmin) return;
+
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
@@ -35,8 +43,19 @@ function renderProducts(items) {
       <h3>${p.name}</h3>
       <p>${p.price} ₽</p>
       <div class="rating">⭐ ${p.rating || '0'}</div>
+      ${isAdmin ? `<button class="admin-btn">${p.deleted ? 'Вернуть' : 'Удалить'}</button>` : ''}
     `;
     grid.appendChild(card);
+
+    if (isAdmin) {
+      const btn = card.querySelector('.admin-btn');
+      btn.addEventListener('click', () => {
+        PRODUCTS[index].deleted = !PRODUCTS[index].deleted;
+        renderProducts(PRODUCTS);
+        // Сохраняем изменения в localStorage (или можно отправлять на сервер)
+        localStorage.setItem('products', JSON.stringify(PRODUCTS));
+      });
+    }
   });
 }
 
