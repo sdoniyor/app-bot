@@ -4,11 +4,11 @@ const path = require('path');
 const app = express();
 
 app.use(express.json());
-app.use(express.static(__dirname)); // чтобы отдавать index.html, style.css, app.js
+app.use(express.static(__dirname));
 
 const PRODUCTS_FILE = path.join(__dirname, 'products.json');
 
-// --- Получить продукты ---
+// GET products
 app.get('/products', (req, res) => {
   fs.readFile(PRODUCTS_FILE, 'utf8', (err, data) => {
     if (err) return res.status(500).send({ error: 'Ошибка чтения продуктов' });
@@ -16,7 +16,7 @@ app.get('/products', (req, res) => {
   });
 });
 
-// --- Обновить продукт (только для админа) ---
+// POST update product
 app.post('/update-product', (req, res) => {
   const { index, deleted } = req.body;
 
